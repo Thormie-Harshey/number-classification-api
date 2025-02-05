@@ -2,10 +2,10 @@
 package com.example.number_classifier_api.controller;
 
 import com.example.number_classifier_api.model.NumberResponse;
-import com.example.number_classifier_api.model.ErrorResponse;
+// import com.example.number_classifier_api.model.ErrorResponse;
 import com.example.number_classifier_api.service.NumberService;
 
-// import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatus;
 // import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -31,7 +31,18 @@ public class NumberController {
         //     return new ErrorResponse(number, true);   
         // }
         } catch (NumberFormatException e) {
-        return ResponseEntity.badRequest().body(new ErrorResponse(number, true));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST) // Explicitly set status to 400
+                             .body(new ErrorResponse(number, true));
+        // } catch (NumberFormatException e) {
+        // return ResponseEntity.Request().body(new ErrorResponse(number, true));
+        }
+    }
+
+    // Exception Handler for Invalid Input (Handles NumberFormatException globally)
+    @ExceptionHandler(NumberFormatException.class)
+    public ResponseEntity<ErrorResponse> handleInvalidInput(NumberFormatException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                             .body(new ErrorResponse("Invalid number format", true));
     }
 }
 
@@ -51,5 +62,4 @@ class ErrorResponse {
     public boolean isError() {
         return error;
     }
-}
 }
