@@ -4,6 +4,8 @@ package com.example.number_classifier_api.controller;
 import com.example.number_classifier_api.model.NumberResponse;
 import com.example.number_classifier_api.service.NumberService;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,4 +50,5 @@ class ErrorResponse {
     public boolean isError() {
         return error;
     }
+}
 }
