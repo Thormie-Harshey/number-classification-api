@@ -44,22 +44,21 @@ public class NumberController {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                              .body(new ErrorResponse("Invalid number format", true));
     }
-}
-
-class ErrorResponse {
-    private final String number;
-    private final boolean error;
-
-    public ErrorResponse(String number, boolean error) {
-        this.number = number;
-        this.error = error;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public boolean isError() {
-        return error;
+    static class ErrorResponse {
+        private final String number;
+        private final boolean error;
+    
+        public ErrorResponse(String number, boolean error) {
+            this.number = number;
+            this.error = error;
+        }
+    
+        public String getNumber() {
+            return number;
+        }
+    
+        public boolean isError() {
+            return error;
+        }
     }
 }
