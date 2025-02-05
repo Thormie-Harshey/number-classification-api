@@ -12,7 +12,7 @@ import java.util.ArrayList;
 @Service
 public class NumberService {
 
-    public NumberResponse classifyNumber(int number) {
+    public ResponseEntity<Object> classifyNumber(int number) {
         boolean is_prime = isPrime(number);
         boolean is_perfect = isPerfect(number);
         boolean isArmstrong = isArmstrong(number);
