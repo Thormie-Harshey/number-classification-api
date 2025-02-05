@@ -3,6 +3,8 @@ package com.example.number_classifier_api.controller;
 
 import com.example.number_classifier_api.model.NumberResponse;
 import com.example.number_classifier_api.service.NumberService;
+
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -22,9 +24,11 @@ public class NumberController {
         try {
             int num = Integer.parseInt(number);
             return numberService.classifyNumber(num);
+        // } catch (NumberFormatException e) {
+        //     return new ErrorResponse(number, true);   
+        // }
         } catch (NumberFormatException e) {
-            return new ErrorResponse(number, true);
-        }
+        return ResponseEntity.badRequest().body(new ErrorResponse(number, true));
     }
 }
 
