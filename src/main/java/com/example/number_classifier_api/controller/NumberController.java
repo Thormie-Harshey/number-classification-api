@@ -5,8 +5,8 @@ import com.example.number_classifier_api.model.NumberResponse;
 import com.example.number_classifier_api.model.ErrorResponse;
 import com.example.number_classifier_api.service.NumberService;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.HttpStatusCode;
+// import org.springframework.http.HttpStatus;
+// import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +23,7 @@ public class NumberController {
     }
 
     @GetMapping("/classify-number")
-    public ResponseEntity<Object> classifyNumber(@RequestParam String number) {
+    public ResponseEntity<?> classifyNumber(@RequestParam String number) {
         try {
             int num = Integer.parseInt(number);
             return numberService.classifyNumber(num);
